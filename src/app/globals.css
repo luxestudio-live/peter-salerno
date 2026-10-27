@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --canvas: #FAF9F6;
+    --canvas-pure: #FFFFFF;
+    --parchment: #F4EFE6;
+    --ink: #121314;
+    --ink-muted: #5A5A58;
+    --bronze: #A85B32;
+    --bronze-dark: #8F4822;
+    --border-mist: #E8E4DC;
+    --spine-shadow: rgba(18, 19, 20, 0.28);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--bronze);
+    color: #FFFFFF;
+  }
+}
+
+/* 3D Hardware Accelerated Book Styles */
+.perspective-stage {
+  perspective: 2000px;
+  perspective-origin: center center;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Page Curvature & Depth Gradients */
+.page-shadow-left {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 5%, transparent 15%);
+}
+
+.page-shadow-right {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 5%, transparent 15%);
+}
+
+.gutter-spine {
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(18, 19, 20, 0.08) 45%, 
+    rgba(18, 19, 20, 0.22) 50%, 
+    rgba(18, 19, 20, 0.08) 55%, 
+    transparent 100%
+  );
+}
+
+.cloth-texture {
+  background-image: radial-gradient(#A85B32 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.page-edge-lines {
+  background: repeating-linear-gradient(
+    to bottom,
+    #E8E4DC 0px,
+    #E8E4DC 1px,
+    #FAF9F6 2px,
+    #FAF9F6 3px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
